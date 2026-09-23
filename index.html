@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://js.arcgis.com/5.1/esri/themes/light/main.css">
 <title>Παραδοσιακός Οικισμός Βρίσας Λέσβου</title>
 
 <style>
@@ -544,13 +544,11 @@ loading="lazy">
     "@arcgis/core/layers/MapImageLayer.js"
   ]);
 
-  // Ορθοφωτοχάρτης 2025
   const layer2025 = new MapImageLayer({
     url: "https://sdi-portal.aegean.gr/arcgis/rest/services/Vrissa_22_03_2025/MapServer",
     title: "Βρίσα 2025"
   });
 
-  // Ορθοφωτοχάρτης 2026
   const layer2026 = new MapImageLayer({
     url: "https://sdi-portal.aegean.gr/arcgis/rest/services/vrisa_2026_MIL1/MapServer",
     title: "Βρίσα 2026"
@@ -563,25 +561,28 @@ loading="lazy">
 
   const view = new MapView({
     container: "swipeMap",
-    map: map
-});
+    map: map,
+    center: [26.2035, 39.0415],
+    zoom: 18
+  });
 
   await view.when();
-  await Promise.all([layer2025.load(), layer2026.load()]);  
-  
-  await view.goTo({
-  center: [26.2035, 39.0415],
-  zoom: 18
-});  
-  
+  await Promise.all([
+    layer2025.load(),
+    layer2026.load()
+  ]);
+
   const swipe = document.createElement("arcgis-swipe");
+
+  document.getElementById("swipeMap").appendChild(swipe);
+
+  await swipe.componentOnReady();
+
   swipe.view = view;
   swipe.position = 50;
   swipe.startLayers = [layer2025];
   swipe.endLayers = [layer2026];
-  swipe.label = "Σύγκριση ορθοφωτοχαρτών 2025 και 2026";
-
-  view.ui.add(swipe);
+  swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
 </script>
 </body>
 </html>
