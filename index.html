@@ -586,23 +586,23 @@ loading="lazy">
   });
 
   await view.when();
-  await Promise.all([
-    layer2025.load(),
-    layer2026.load()
-  ]);
+ // await Promise.all([
+ // layer2025.load(),
+ // layer2026.load()
+// ]);
 
-  const swipe = document.createElement("arcgis-swipe");
+ // const swipe = document.createElement("arcgis-swipe");
 
-  document.getElementById("swipeMap").appendChild(swipe);
+// document.getElementById("swipeMap").appendChild(swipe);
 
-  await swipe.componentOnReady();
+// await swipe.componentOnReady();
 
-  swipe.view = view;
-  swipe.position = 50;
-  swipe.startLayers = [layer2025];
-  swipe.endLayers = [layer2026];
-  swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
-  // MAP TOUR
+ // swipe.view = view;
+ // swipe.position = 50;
+ // swipe.startLayers = [layer2025];
+ // swipe.endLayers = [layer2026];
+ // swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
+   MAP TOUR
 const tourMap = new Map({
   basemap: "satellite"
 });
