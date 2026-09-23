@@ -451,12 +451,12 @@ loading="lazy">
 στο Map Tour της αρχικής εφαρμογής.
 </p>
 <div class="tour-map-wrapper">
-  <iframe
+  <div
+    id="tourMap"
     class="tour-map"
-    title="Χάρτης των έξι σημείων φωτογραφικής τεκμηρίωσης στη Βρίσα"
-    src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=4d09b9f112cb4dfe85172a994ee3c7da"
-    loading="lazy">
-  </iframe>
+    role="region"
+    aria-label="Διαδραστικός χάρτης των έξι σημείων φωτογραφικής τεκμηρίωσης στη Βρίσα">
+  </div>
 </div>
 <div class="tour-grid">
 
@@ -602,6 +602,19 @@ loading="lazy">
   swipe.startLayers = [layer2025];
   swipe.endLayers = [layer2026];
   swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
+  // MAP TOUR
+const tourMap = new Map({
+  basemap: "satellite"
+});
+
+const tourView = new MapView({
+  container: "tourMap",
+  map: tourMap,
+  center: [26.2015, 39.0405],
+  zoom: 18
+});
+
+await tourView.when();
 </script>
 </body>
 </html>
