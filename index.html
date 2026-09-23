@@ -1,125 +1,550 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Βρίσα Λέσβου – Κατάσταση Κτιρίων 2026</title>
+<title>Παραδοσιακός Οικισμός Βρίσας Λέσβου</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #ffffff;
-    }
+html { scroll-behavior: smooth; }
 
-    header {
-      background: #17324d;
-      color: white;
-      text-align: center;
-      padding: 45px 20px;
-    }
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+  color: #4b413b;
+  background: #fbf3e6;
+}
 
-    header h1 {
-      margin: 0 0 10px;
-      font-size: 2.2rem;
-    }
+a { color: #174f8c; }
 
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px;
-    }
+a:focus, button:focus {
+  outline: 3px solid #111;
+  outline-offset: 4px;
+}
 
-    h2 {
-      color: #17324d;
-    }
+/* COVER */
+.hero {
+  min-height: 92vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("images/cover.png") center/cover no-repeat;
+  color: white;
+}
 
-    .map-container {
-      width: 100%;
-      height: 650px;
-      margin-top: 20px;
-      border: 1px solid #ccc;
-    }
+.hero-content {
+  max-width: 850px;
+  margin-left: 7%;
+  padding: 50px 25px;
+}
 
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.1;
+  text-shadow: 2px 2px 5px #000;
+}
 
-    footer {
-      margin-top: 40px;
-      padding: 25px;
-      background: #f2f2f2;
-      text-align: center;
-    }
+.hero h2 {
+  margin-top: 25px;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  color: white;
+}
 
-    a:focus,
-    button:focus {
-      outline: 3px solid #000;
-      outline-offset: 3px;
-    }
+.author {
+  margin-top: 40px;
+  font-weight: bold;
+}
 
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
+/* NAVIGATION */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #f7ead7;
+  border-bottom: 1px solid #d5c3aa;
+}
 
-      .map-container {
-        height: 500px;
-      }
-    }
-  </style>
+nav ul {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #523a2c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* CONTENT */
+main {
+  max-width: 1150px;
+  margin: auto;
+}
+
+section {
+  padding: 70px 30px;
+  scroll-margin-top: 80px;
+}
+
+section + section {
+  border-top: 1px solid #e0cfb7;
+}
+
+h2 {
+  color: #17234f;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+h3 {
+  color: #17234f;
+  font-size: 1.65rem;
+  margin-top: 50px;
+}
+
+.lead {
+  font-size: 1.15rem;
+}
+
+.notice {
+  padding: 20px;
+  margin: 30px 0;
+  border-left: 5px solid #17234f;
+  background: #fffaf2;
+}
+
+/* PHOTO GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 35px 0;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* MAPS */
+.map-frame {
+  width: 100%;
+  height: 680px;
+  border: 1px solid #aaa;
+  margin: 25px 0 50px;
+  background: white;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-link {
+  text-align: center;
+  margin-top: -35px;
+  margin-bottom: 50px;
+}
+
+/* MAP TOUR PHOTOS */
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.tour-item {
+  background: white;
+  border: 1px solid #d7c8b6;
+}
+
+.tour-item img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.tour-number {
+  padding: 8px 12px;
+  font-weight: bold;
+  color: #17234f;
+}
+
+/* SWIPE REPRESENTATION */
+.swipe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.swipe-grid .map-frame {
+  height: 550px;
+  margin-bottom: 10px;
+}
+
+.swipe-label {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  background: #17234f;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+@media (max-width: 800px) {
+  .gallery,
+  .tour-grid,
+  .swipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 75vh;
+  }
+
+  .hero-content {
+    margin-left: 0;
+  }
+
+  section {
+    padding: 50px 20px;
+  }
+
+  .map-frame {
+    height: 520px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Βρίσα Λέσβου – Κατάσταση Κτιρίων 2026</h1>
-  <p>Διαδραστική χαρτογραφική εφαρμογή</p>
+<header class="hero">
+  <div class="hero-content">
+    <h1>ΠΑΡΑΔΟΣΙΑΚΟΣ ΟΙΚΙΣΜΟΣ<br>ΒΡΙΣΑΣ ΛΕΣΒΟΥ</h1>
+    <h2>Ο ΣΕΙΣΜΟΣ ΠΟΥ ΑΛΛΑΞΕ ΤΗ ΒΡΙΣΑ</h2>
+
+    <p class="author">
+      DIMITRIOS CHRONIS<br>
+      <span>10 Ιουνίου 2026</span>
+    </p>
+  </div>
 </header>
+
+<nav aria-label="Κύρια πλοήγηση">
+<ul>
+  <li><a href="#earthquake">Λέσβος 12/06/2017 15:28:38</a></li>
+  <li><a href="#damage">Ο Απολογισμός του σεισμού</a></li>
+  <li><a href="#buildings">Αποτύπωση του κτιριακού αποθέματος</a></li>
+  <li><a href="#today">Η νέα πραγματικότητα</a></li>
+</ul>
+</nav>
 
 <main>
 
-  <section aria-labelledby="intro-title">
-    <h2 id="intro-title">Σχετικά με την εφαρμογή</h2>
+<section id="earthquake">
+<h2>Λέσβος 12/06/2017 15:28:38</h2>
 
-    <p>
-      Η εφαρμογή παρουσιάζει τη σημερινή κατάσταση του κτιριακού
-      αποθέματος του παραδοσιακού οικισμού της Βρίσας Λέσβου,
-      σε σχέση με τις μεταβολές που ακολούθησαν τον ισχυρό
-      σεισμό της 12ης Ιουνίου 2017.
-    </p>
-  </section>
+<p>
+Δευτέρα 12/6/2017, μια ακόμα συνηθισμένη ημέρα ξεκινά, με τους κατοίκους
+του παραδοσιακού οικισμού της Βρίσας Λέσβου να ακολουθούν την καθημερινή
+τους ρουτίνα, ασκώντας τις επαγγελματικές τους δραστηριότητες, που είναι
+κυρίως γεωργία και κτηνοτροφία.
+</p>
 
-  <section aria-labelledby="map-title">
-    <h2 id="map-title">Διαδραστικός χάρτης</h2>
+<p>
+Όλα κυλούν ήρεμα μέχρι και τις 15:27, ώρα που οι περισσότεροι κάτοικοι,
+έχοντας ολοκληρώσει τις εργασιακές τους υποχρεώσεις, έχουν πάρει το δρόμο
+της επιστροφής για το σπίτι τους, ενώ τα παιδιά παραμένουν στο σχολείο.
+</p>
 
-    <p>
-      Στον ακόλουθο χάρτη παρουσιάζονται οι μεταβολές στην κατάσταση
-      των κτιρίων του οικισμού.
-    </p>
+<p>
+Η ηρεμία του παραδοσιακού οικισμού διαταράσσεται βίαια από την εκδήλωση
+ενός ισχυρού σεισμού μεγέθους 6,1 βαθμών, ο οποίος εκδηλώθηκε στις 15:28,
+15 χλμ. νοτιοδυτικά του Πλωμαρίου Λέσβου, με εστιακό βάθος 12 χλμ.
+</p>
 
-    <div class="map-container">
-      <iframe
-        title="Διαδραστικός χάρτης μεταβολών κτιρίων Βρίσας Λέσβου"
-        src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=4d09b9f112cb4dfe85172a994ee3c7da"
-        loading="lazy">
-      </iframe>
-    </div>
-  </section>
+<p>
+Ο τραγικός απολογισμός του πολύ ισχυρού σεισμού ήταν ο θάνατος μιας
+ηλικιωμένης γυναίκας, παρά τις εκτεταμένες και σοβαρές ζημιές που
+προκάλεσε στα κτίρια.
+</p>
+
+<div class="notice">
+<strong>Σημαντικό:</strong> Τα παιδιά που βρίσκονταν στο σχολείο
+ακολούθησαν τις οδηγίες της δασκάλας τους και τις πρακτικές αποφυγής
+τραυματισμού που είχαν διδαχθεί στις ασκήσεις σεισμού.
+</div>
+
+<p>
+Ο μεγάλος χαμένος της ισχυρής σεισμικής δόνησης υπήρξε το κτιριακό
+απόθεμα του παραδοσιακού οικισμού, με μεγάλο αριθμό κτιρίων να
+χαρακτηρίζονται ακατάλληλα προς χρήση.
+</p>
+
+<p>
+<a href="https://www.seismos.gr/seismos/plomari-mytilini/243269/"
+   target="_blank" rel="noopener">
+Πληροφορίες για τον σεισμό στο seismos.gr
+</a>
+</p>
+</section>
+
+
+<section id="damage">
+<h2>Ο Απολογισμός του σεισμού</h2>
+
+<p class="lead">
+<strong>
+Ο κύριος όγκος των ζημιών αναλογεί στον οικισμό Βρίσας
+(περίπου σε ποσοστό 80%).
+</strong>
+</p>
+
+<ul>
+<li>Πάνω από 300 κτίρια καταστράφηκαν ολοσχερώς («κόκκινα»).</li>
+<li>Πάνω από 1.000 κτίρια υπέστησαν σοβαρές ζημιές («κίτρινα»).</li>
+<li>Ένα σχολικό κτίριο, το Δημοτικό και Νηπιαγωγείο της Βρίσας, καταστράφηκε ολοσχερώς.</li>
+<li>Άνω των 25 ναών και ναΐσκων υπέστησαν ζημιές.</li>
+<li>Διενεργήθηκαν αυτοψίες σε περίπου 500 ακόμη κτίρια.</li>
+<li>Δηλώθηκαν ζημιές σε εμπορικές επιχειρήσεις και αγροτικά νοικοκυριά.</li>
+</ul>
+
+<h3>Φωτογραφικό υλικό μετά τον σεισμό</h3>
+
+<div class="gallery">
+<img src="images/gallery-01.jpg" alt="Κατεστραμμένο κτίριο στη Βρίσα μετά τον σεισμό">
+<img src="images/gallery-02.jpg" alt="Επιχείρηση διάσωσης σε κατεστραμμένο κτίριο της Βρίσας">
+<img src="images/gallery-03.jpg" alt="Σοβαρές σεισμικές βλάβες σε κτίριο της Βρίσας">
+<img src="images/gallery-04.jpg" alt="Κατεστραμμένη όψη παραδοσιακού κτιρίου">
+<img src="images/gallery-05.jpg" alt="Βλάβες σε παραδοσιακή κατοικία της Βρίσας">
+<img src="images/gallery-06.jpg" alt="Αεροφωτογραφία των ζημιών στον οικισμό της Βρίσας">
+</div>
+
+<p>
+Πηγή φωτογραφικού υλικού:
+<a href="https://myvrissa.gr/fotografies/" target="_blank" rel="noopener">
+Σύλλογος Σεισμοπαθών Βρίσας
+</a>
+</p>
+</section>
+
+
+<section id="buildings">
+
+<h2>Αποτύπωση του κτιριακού αποθέματος της Βρίσας μετά τον μεγάλο σεισμό</h2>
+
+<p>
+Στο πλαίσιο του μαθήματος «ΓΠΣ και Χαρτογραφία στη Διαχείριση Κινδύνων»,
+του ΔΠΜΣ «Φυσικοί Κίνδυνοι &amp; Αντιμετώπιση Καταστροφών»,
+δημιουργήθηκαν διαδικτυακές εφαρμογές και χάρτες για την αποτύπωση και
+οπτικοποίηση της πληροφορίας.
+</p>
+
+<h3>1. Βλάβες κτιρίων Βρίσας βάσει ελέγχου της ΔΑΕΦΚ</h3>
+
+<div class="map-frame">
+<iframe
+title="Βλάβες κτιρίων Βρίσας βάσει ελέγχου ΔΑΕΦΚ"
+src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.html?appid=62edf83548c746459babf8c22d9edb18"
+loading="lazy">
+</iframe>
+</div>
+
+
+<h3>2. Κατάσταση κτιριακού αποθέματος της Βρίσας έτους 2026</h3>
+
+<div class="map-frame">
+<iframe
+title="Κατάσταση κτιριακού αποθέματος Βρίσας 2026"
+src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.html?appid=890d77db692d4af5ac8cc112ab02bb77"
+loading="lazy">
+</iframe>
+</div>
+
+
+<h3>3. Μεταβολές του κτιριακού αποθέματος της Βρίσας τα έτη 2025–2026</h3>
+
+<div class="map-frame">
+<iframe
+title="Μεταβολές κτιριακού αποθέματος Βρίσας 2025–2026"
+src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.html?appid=84d49821adbb462c8de02ba32972bf08"
+loading="lazy">
+</iframe>
+</div>
+
+<h3>Web Map – Κτιριακές μεταβολές 2025–2026</h3>
+
+<div class="map-frame">
+<iframe
+title="Web Map κτιριακών μεταβολών Βρίσας 2025–2026"
+src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=4d09b9f112cb4dfe85172a994ee3c7da"
+loading="lazy">
+</iframe>
+</div>
+
+
+<h3>Σύγκριση χαρτών πριν και μετά</h3>
+
+<p>
+Οι δύο ακόλουθοι χάρτες αντιστοιχούν στα δεδομένα που χρησιμοποιούνται
+στη σύγκριση του αρχικού StoryMap.
+</p>
+
+<div class="swipe-grid">
+
+<div>
+<div class="map-frame">
+<iframe
+title="Χάρτης πρώτης χρονικής περιόδου"
+src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=856f5643a4a44282b9b819a55f1334bc"
+loading="lazy">
+</iframe>
+</div>
+<p class="swipe-label">Πρώτη χρονική περίοδος</p>
+</div>
+
+<div>
+<div class="map-frame">
+<iframe
+title="Χάρτης δεύτερης χρονικής περιόδου"
+src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=d687e1724aac4b14a5475f0bdf8e36c8"
+loading="lazy">
+</iframe>
+</div>
+<p class="swipe-label">Δεύτερη χρονική περίοδος</p>
+</div>
+
+</div>
+
+
+<h3>Σημεία φωτογραφικής τεκμηρίωσης</h3>
+
+<p>
+Φωτογραφίες από επιλεγμένα σημεία του οικισμού που παρουσιάζονται
+στο Map Tour της αρχικής εφαρμογής.
+</p>
+
+<div class="tour-grid">
+
+<div class="tour-item">
+<img src="images/damage-01.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 1 στη Βρίσα">
+<div class="tour-number">Σημείο 1</div>
+</div>
+
+<div class="tour-item">
+<img src="images/damage-02.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 2 στη Βρίσα">
+<div class="tour-number">Σημείο 2</div>
+</div>
+
+<div class="tour-item">
+<img src="images/damage-03.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 3 στη Βρίσα">
+<div class="tour-number">Σημείο 3</div>
+</div>
+
+<div class="tour-item">
+<img src="images/damage-04.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 4 στη Βρίσα">
+<div class="tour-number">Σημείο 4</div>
+</div>
+
+<div class="tour-item">
+<img src="images/damage-05.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 5 στη Βρίσα">
+<div class="tour-number">Σημείο 5</div>
+</div>
+
+<div class="tour-item">
+<img src="images/damage-06.jpg" alt="Φωτογραφική τεκμηρίωση σημείου 6 στη Βρίσα">
+<div class="tour-number">Σημείο 6</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="today">
+
+<h2>Η νέα πραγματικότητα</h2>
+
+<p>
+Ο παραδοσιακός οικισμός της Βρίσας Λέσβου υπήρξε για εκατοντάδες χρόνια
+σε μεγάλο βαθμό αμετάβλητος, με την διατήρηση του αριθμού των κατοίκων
+της σε υψηλά επίπεδα, σε σχέση με άλλους παραδοσιακούς και μη οικισμούς
+της Λέσβου αλλά και της υπόλοιπης χώρας.
+</p>
+
+<p>
+Διατήρησε παράλληλα αναλλοίωτο τον αρχιτεκτονικό χαρακτήρα δόμησής της,
+με την πέτρα να παίζει κυρίαρχο ρόλο, γεγονός που συνέβαλε στον
+χαρακτηρισμό της ως «Παραδοσιακός Οικισμός».
+</p>
+
+<p>
+Ο σεισμός της 12ης Ιουνίου 2017 άλλαξε δραματικά τον παραδοσιακό οικισμό,
+όπου ακόμα και σήμερα, σχεδόν εννέα χρόνια μετά, η εικόνα του να
+αποτελεί μια διάχυτη μελαγχολία.
+</p>
+
+<p>
+Μεγάλος αριθμός μόνιμων κατοίκων αναγκάστηκε να απομακρυνθεί από τις
+οικίες του, ενώ ο οικισμός εξακολουθεί να διαθέτει μεγάλο αριθμό
+ερειπίων και κτιρίων που βρίσκονται σε διαφορετικά στάδια κατασκευής.
+</p>
+
+<p>
+Τα νέα κτίρια που ανεγείρονται ακολουθούν σύγχρονες προδιαγραφές
+ασφάλειας, προκειμένου να είναι σε θέση να ανταποκριθούν επαρκώς
+σε έναν μελλοντικό ισχυρό σεισμό.
+</p>
+
+<p>
+Στην πλειονότητά τους δεν κατασκευάζονται πλέον με τις παραδοσιακές
+πρακτικές και τεχνοτροπίες, όμως γίνεται προσπάθεια διατήρησης
+χαρακτηριστικών της παραδοσιακής αρχιτεκτονικής, όπως οι κεραμοσκεπές
+και οι κορνίζες από απομίμηση πέτρας στα παράθυρα και τις πόρτες.
+</p>
+
+<div class="notice">
+<strong>
+Ευχαριστούμε πολύ για την περιήγησή σας στην εφαρμογή
+«Παραδοσιακός Οικισμός Βρίσας Λέσβου».
+</strong>
+</div>
+
+</section>
 
 </main>
 
 <footer>
-  <p>Βρίσα Λέσβου – Διαδραστική εφαρμογή GIS</p>
+<p>
+Παραδοσιακός Οικισμός Βρίσας Λέσβου – Διαδραστική εφαρμογή GIS
+</p>
 </footer>
 
 </body>
