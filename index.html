@@ -622,10 +622,11 @@ const tourView = new MapView({
   container: "tourMap",
   map: tourMap
 });
-
-await tourView.when();
+  
   window.tourView = tourView;
   window.tourMap = tourMap;
+await tourView.when();
+  
 </script>
 </body>
 </html>
