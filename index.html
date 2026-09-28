@@ -558,12 +558,15 @@ loading="lazy">
 <script type="module" src="https://js.arcgis.com/5.1/"></script>
 
 <script type="module">
-  const [Map, MapView, MapImageLayer, WebMap] = await $arcgis.import([
-    "@arcgis/core/Map.js",
-    "@arcgis/core/views/MapView.js",
-    "@arcgis/core/layers/MapImageLayer.js",
-    "@arcgis/core/WebMap.js"
-  ]);
+  const [Map, MapView, MapImageLayer, WebMap, esriConfig] = await $arcgis.import([
+  "@arcgis/core/Map.js",
+  "@arcgis/core/views/MapView.js",
+  "@arcgis/core/layers/MapImageLayer.js",
+  "@arcgis/core/WebMap.js",
+  "@arcgis/core/config.js"
+]);
+
+esriConfig.portalUrl = "https://sdi-portal.aegean.gr/portal";
 /*
   const layer2025 = new MapImageLayer({
     url: "https://sdi-portal.aegean.gr/arcgis/rest/services/Vrissa_22_03_2025/MapServer",
