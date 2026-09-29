@@ -452,12 +452,13 @@ loading="lazy">
 στο Map Tour της αρχικής εφαρμογής.
 </p>
 <div class="tour-map-wrapper">
-  <div
-    id="tourMap"
+  <iframe
     class="tour-map"
-    role="region"
-    aria-label="Διαδραστικός χάρτης των έξι σημείων φωτογραφικής τεκμηρίωσης στη Βρίσα">
-  </div>
+    src="https://sdi-portal.aegean.gr/portal/apps/mapviewer/index.html?webmap=4d09b9f112cb4dfe85172a994ee3c7da"
+    title="Διαδραστικός χάρτης της Βρίσας"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
 </div>
 <div class="tour-grid">
 
@@ -608,38 +609,9 @@ esriConfig.portalUrl = "https://sdi-portal.aegean.gr/portal";
  // swipe.endLayers = [layer2026];
  // swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
  */
- // MAP TOUR - πραγματικό Web Map
-const tourMap = new WebMap({
-  portalItem: {
-    id: "4d09b9f112cb4dfe85172a994ee3c7da",
-    portal: {
-      url: "https://sdi-portal.aegean.gr/portal"
-    }
-  }
-});
 
-const tourView = new MapView({
-  container: "tourMap",
-  map: tourMap
-});
 
-window.tourView = tourView;
-window.tourMap = tourMap;
 
-await tourView.when();
-
-requestAnimationFrame(() => {
-  tourView.resize();
-
-  setTimeout(() => {
-    tourView.resize();
-    tourView.goTo({
-      center: [26.199615807006328, 39.040191613657878],
-      zoom: 18
-    }, { animate: false });
-  }, 500);
-});
-  
 </script>
 </body>
 </html>
