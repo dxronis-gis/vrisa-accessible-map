@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://js.arcgis.com/5.1/esri/themes/light/main.css">
 <title>Παραδοσιακός Οικισμός Βρίσας Λέσβου</title>
 
 <style>
@@ -167,7 +166,7 @@ h3 {
 }
 
 /* MAP TOUR PHOTOS */
-  .tour-map-wrapper {
+.tour-map-wrapper {
     width: 100%;
     margin: 25px 0 30px;
     position: relative;
@@ -180,29 +179,6 @@ h3 {
   border: 0;
   display: block;
   border-radius: 8px;
-}
-  .tour-markers {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-}
-  .tour-marker {
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #e65b55;
-    color: white;
-    border: 2px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
-    transform: translate(-50%, -50%);
 }
 .tour-grid {
   display: grid;
@@ -229,28 +205,6 @@ h3 {
   color: #17234f;
 }
 
-/* SWIPE 2025-2026 */
-.swipe-map-section {
-    width: 100%;
-    margin: 30px 0;
-}
-
-#swipeMap {
-    width: 100%;
-    height: 600px;
-    min-height: 500px;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-}
-
-.swipe-instructions {
-    text-align: center;
-    font-weight: 600;
-    margin-top: 12px;
-    line-height: 1.6;
-}
-
 /* FOOTER */
 footer {
   background: #17234f;
@@ -261,8 +215,7 @@ footer {
 
 @media (max-width: 800px) {
   .gallery,
-  .tour-grid,
-  .swipe-grid {
+  .tour-grid {
     grid-template-columns: 1fr;
   }
 
@@ -358,7 +311,6 @@ footer {
 </p>
 </section>
 
-
 <section id="damage">
 <h2>Ο Απολογισμός του σεισμού</h2>
 
@@ -397,7 +349,6 @@ footer {
 </p>
 </section>
 
-
 <section id="buildings">
 
 <h2>Αποτύπωση του κτιριακού αποθέματος της Βρίσας μετά τον μεγάλο σεισμό</h2>
@@ -419,7 +370,6 @@ loading="lazy">
 </iframe>
 </div>
 
-
 <h3>2. Κατάσταση κτιριακού αποθέματος της Βρίσας έτους 2026</h3>
 
 <div class="map-frame">
@@ -429,7 +379,6 @@ src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.ht
 loading="lazy">
 </iframe>
 </div>
-
 
 <h3>3. Μεταβολές του κτιριακού αποθέματος της Βρίσας τα έτη 2025–2026</h3>
 
@@ -451,23 +400,12 @@ loading="lazy">
 </iframe>
 </div>
 
-
 <h3>Σύγκριση χαρτών πριν και μετά</h3>
 
 <p>
-Οι δύο ακόλουθοι χάρτες αντιστοιχούν στα δεδομένα που χρησιμοποιούνται
-στη σύγκριση του αρχικού StoryMap.
+Η σύγκριση των ορθοφωτοχαρτών 2025–2026 αποτελεί μέρος της αρχικής εφαρμογής StoryMap.
+Στην παρούσα έκδοση διατηρούνται οι δημόσια διαθέσιμοι διαδραστικοί χάρτες της Βρίσας.
 </p>
-
-<div class="swipe-map-section">
-  <div id="swipeMap" aria-label="Διαδραστική σύγκριση ορθοφωτοχαρτών της Βρίσας για τα έτη 2025 και 2026"></div>
-
-  <p class="swipe-instructions">
-    Σύρετε την κατακόρυφη μπάρα δεξιά ή αριστερά για να συγκρίνετε
-    τον ορθοφωτοχάρτη της Βρίσας του 2025 με τον ορθοφωτοχάρτη του 2026.
-  </p>
-</div>
-
 
 <h3>Σημεία φωτογραφικής τεκμηρίωσης</h3>
 
@@ -476,13 +414,13 @@ loading="lazy">
 στο Map Tour της αρχικής εφαρμογής.
 </p>
 <div class="tour-map-wrapper">
-  <div
-    id="tourMap"
+  <iframe
     class="tour-map"
-    role="region"
-    aria-label="Διαδραστικός χάρτης με τα έξι σημεία φωτογραφικής τεκμηρίωσης στη Βρίσα">
-  </div>
-</div>
+    src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.html?appid=84d49821adbb462c8de02ba32972bf08"
+    title="Διαδραστικός χάρτης της Βρίσας – μεταβολές κτιριακού αποθέματος 2025–2026"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
 </div>
 
 <div class="tour-grid">
@@ -520,7 +458,6 @@ loading="lazy">
 </div>
 
 </section>
-
 
 <section id="today">
 
@@ -580,118 +517,5 @@ loading="lazy">
 Παραδοσιακός Οικισμός Βρίσας Λέσβου – Διαδραστική εφαρμογή GIS
 </p>
 </footer>
-<!-- ArcGIS Maps SDK for JavaScript -->
-<script type="module" src="https://js.arcgis.com/5.1/"></script>
-
-<script type="module">
-  const [Map, MapView, MapImageLayer, WebMap, esriConfig, Graphic, GraphicsLayer] = await $arcgis.import([
-  "@arcgis/core/Map.js",
-  "@arcgis/core/views/MapView.js",
-  "@arcgis/core/layers/MapImageLayer.js",
-  "@arcgis/core/WebMap.js",
-  "@arcgis/core/config.js",
-  "@arcgis/core/Graphic.js",
-  "@arcgis/core/layers/GraphicsLayer.js"
-]);
-
-esriConfig.portalUrl = "https://sdi-portal.aegean.gr/portal";
-/*
-  const layer2025 = new MapImageLayer({
-    url: "https://sdi-portal.aegean.gr/arcgis/rest/services/Vrissa_22_03_2025/MapServer",
-    title: "Βρίσα 2025"
-  });
-
-  const layer2026 = new MapImageLayer({
-    url: "https://sdi-portal.aegean.gr/arcgis/rest/services/vrisa_2026_MIL1/MapServer",
-    title: "Βρίσα 2026"
-  });
-
-  const map = new Map({
-    basemap: "topo-vector",
-    layers: [layer2025, layer2026]
-  });
-
-  const view = new MapView({
-    container: "swipeMap",
-    map: map,
-    center: [26.2035, 39.0415],
-    zoom: 18
-  });
-
- // await view.when();
- // await Promise.all([
- // layer2025.load(),
- // layer2026.load()
-// ]);
-
- // const swipe = document.createElement("arcgis-swipe");
-
-// document.getElementById("swipeMap").appendChild(swipe);
-
-// await swipe.componentOnReady();
-
- // swipe.view = view;
- // swipe.position = 50;
- // swipe.startLayers = [layer2025];
- // swipe.endLayers = [layer2026];
- // swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
- */
-// MAP TOUR - 6 πραγματικά σημεία από το αρχικό StoryMap
-const tourPoints = [
-  { number: 1, latitude: 39.03924166666666, longitude: 26.198580555555555 },
-  { number: 2, latitude: 39.03975, longitude: 26.19938888888889 },
-  { number: 3, latitude: 39.03969444444444, longitude: 26.19932777777778 },
-  { number: 4, latitude: 39.040016666666666, longitude: 26.199802777777776 },
-  { number: 5, latitude: 39.04020277777778, longitude: 26.199986111111112 },
-  { number: 6, latitude: 39.04172777777777, longitude: 26.200530555555556 }
-];
-const tourGraphicsLayer = new GraphicsLayer();
-tourPoints.forEach((point) => {
-  const graphic = new Graphic({
-    geometry: {
-      type: "point",
-      longitude: point.longitude,
-      latitude: point.latitude
-    },
-
-    symbol: {
-      type: "text",
-      text: String(point.number),
-      color: "white",
-      haloColor: "#e65b55",
-      haloSize: 12,
-      font: {
-        size: 12,
-        weight: "bold"
-      }
-    },
-
-    attributes: {
-      number: point.number
-    }
-  });
-
-  tourGraphicsLayer.add(graphic);
-  });
-  // Πραγματικός χάρτης του Map Tour
-const tourWebMap = new WebMap({
-  portalItem: {
-    id: "4d09b9f112cb4dfe85172a994ee3c7da"
-  }
-});
-
-tourWebMap.add(tourGraphicsLayer);
-
-const tourView = new MapView({
-  container: "tourMap",
-  map: tourWebMap,
-  center: [26.19955, 39.04045],
-  zoom: 17
-});
-window.tourView = tourView;
-window.tourWebMap = tourWebMap;
-await tourView.when();
-
-</script>
 </body>
 </html>
