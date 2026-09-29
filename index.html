@@ -168,8 +168,9 @@ h3 {
 
 /* MAP TOUR PHOTOS */
   .tour-map-wrapper {
-  width: 100%;
-  margin: 25px 0 30px;
+    width: 100%;
+    margin: 25px 0 30px;
+    position: relative;
 }
 
 .tour-map {
@@ -179,6 +180,29 @@ h3 {
   border: 0;
   display: block;
   border-radius: 8px;
+}
+  .tour-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+  .tour-marker {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e65b55;
+    color: white;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+    transform: translate(-50%, -50%);
 }
 .tour-grid {
   display: grid;
@@ -452,14 +476,15 @@ loading="lazy">
 στο Map Tour της αρχικής εφαρμογής.
 </p>
 <div class="tour-map-wrapper">
-  <iframe
+  <div
+    id="tourMap"
     class="tour-map"
-    src="https://sdi-portal.aegean.gr/portal/apps/instant/interactivelegend/index.html?appid=84d49821adbb462c8de02ba32972bf08"
-    title="Διαδραστικός χάρτης της Βρίσας"
-    loading="lazy"
-    allowfullscreen>
-  </iframe>
+    role="region"
+    aria-label="Διαδραστικός χάρτης με τα έξι σημεία φωτογραφικής τεκμηρίωσης στη Βρίσα">
+  </div>
 </div>
+</div>
+
 <div class="tour-grid">
 
 <div class="tour-item">
@@ -559,12 +584,14 @@ loading="lazy">
 <script type="module" src="https://js.arcgis.com/5.1/"></script>
 
 <script type="module">
-  const [Map, MapView, MapImageLayer, WebMap, esriConfig] = await $arcgis.import([
+  const [Map, MapView, MapImageLayer, WebMap, esriConfig, Graphic, GraphicsLayer] = await $arcgis.import([
   "@arcgis/core/Map.js",
   "@arcgis/core/views/MapView.js",
   "@arcgis/core/layers/MapImageLayer.js",
   "@arcgis/core/WebMap.js",
-  "@arcgis/core/config.js"
+  "@arcgis/core/config.js",
+  "@arcgis/core/Graphic.js",
+  "@arcgis/core/layers/GraphicsLayer.js"
 ]);
 
 esriConfig.portalUrl = "https://sdi-portal.aegean.gr/portal";
@@ -609,8 +636,60 @@ esriConfig.portalUrl = "https://sdi-portal.aegean.gr/portal";
  // swipe.endLayers = [layer2026];
  // swipe.label = "Σύγκριση ορθοφωτοχαρτών Βρίσας 2025 και 2026";
  */
+// MAP TOUR - 6 πραγματικά σημεία από το αρχικό StoryMap
+const tourPoints = [
+  { number: 1, latitude: 39.03924166666666, longitude: 26.198580555555555 },
+  { number: 2, latitude: 39.03975, longitude: 26.19938888888889 },
+  { number: 3, latitude: 39.03969444444444, longitude: 26.19932777777778 },
+  { number: 4, latitude: 39.040016666666666, longitude: 26.199802777777776 },
+  { number: 5, latitude: 39.04020277777778, longitude: 26.199986111111112 },
+  { number: 6, latitude: 39.04172777777777, longitude: 26.200530555555556 }
+];
+const tourGraphicsLayer = new GraphicsLayer();
+tourPoints.forEach((point) => {
+  const graphic = new Graphic({
+    geometry: {
+      type: "point",
+      longitude: point.longitude,
+      latitude: point.latitude
+    },
 
+    symbol: {
+      type: "text",
+      text: String(point.number),
+      color: "white",
+      haloColor: "#e65b55",
+      haloSize: 12,
+      font: {
+        size: 12,
+        weight: "bold"
+      }
+    },
 
+    attributes: {
+      number: point.number
+    }
+  });
+
+  tourGraphicsLayer.add(graphic);
+  });
+  // Πραγματικός χάρτης του Map Tour
+const tourWebMap = new WebMap({
+  portalItem: {
+    id: "4d09b9f112cb4dfe85172a994ee3c7da"
+  }
+});
+
+tourWebMap.add(tourGraphicsLayer);
+
+const tourView = new MapView({
+  container: "tourMap",
+  map: tourWebMap,
+  center: [26.19955, 39.04045],
+  zoom: 17
+});
+
+await tourView.when();
 
 </script>
 </body>
