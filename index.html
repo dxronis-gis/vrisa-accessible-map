@@ -688,7 +688,8 @@ const tourView = new MapView({
   center: [26.19955, 39.04045],
   zoom: 17
 });
-
+window.tourView = tourView;
+window.tourWebMap = tourWebMap;
 await tourView.when();
 
 </script>
