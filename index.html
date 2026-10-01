@@ -288,6 +288,7 @@ body.a11y-reduced-motion *,body.a11y-reduced-motion *::before,body.a11y-reduced-
 <button class="a11y-btn" data-a="cursor"><span class="a11y-icon">➤</span>Μεγάλος δρομέας<span class="a11y-state">Ενεργοποίηση</span></button>
 <button class="a11y-btn" data-a="reading"><span class="a11y-icon">▰</span>Οδηγός ανάγνωσης<span class="a11y-state">Ενεργοποίηση</span></button>
 <button class="a11y-btn" data-a="align"><span class="a11y-icon">☰</span>Στοίχιση κειμένου<span class="a11y-state" data-s="align">Αριστερά</span></button>
+<button class="a11y-btn" id="a11ySpeak" type="button"><span class="a11y-icon">🔊</span>Ανάγνωση κειμένου<span class="a11y-state" id="a11ySpeakState">Ανενεργή</span></button>
 </div><button id="a11yReset" class="a11y-reset">↻ Επαναφορά όλων των ρυθμίσεων προσβασιμότητας</button><p class="a11y-note">Οι επιλογές αποθηκεύονται στον browser. Τα ενσωματωμένα στοιχεία τρίτων μπορεί να έχουν δικές τους ρυθμίσεις.</p></aside>
 
 
@@ -592,5 +593,55 @@ min-height: 100px !important;
 b.classList.toggle("a11y-reading-guide",!!s.reading);
 b.classList.toggle("a11y-reduced-motion",!!s.reduced);b.style.fontSize=s.text+"%";b.style.letterSpacing=(s.space*.6)+"px";b.style.wordSpacing=(s.space*1.8)+"px";b.style.lineHeight=(1.7+s.line*.25);let q=(n,v)=>{let e=document.querySelector('[data-s="'+n+'"]');if(e)e.textContent=v};q("contrast",["Κανονική","Ενισχυμένη","Υψηλή","Ασπρόμαυρη"][s.contrast]);q("text",s.text+"%");q("space",["Κανονική","+1","+2","+3"][s.space]);q("line",["Κανονικό","+1","+2","+3"][s.line]);q("align",["Αριστερά","Κέντρο","Δεξιά"][s.align]);document.querySelectorAll(".a11y-btn").forEach(x=>{let a=x.dataset.a,key={hide:"hide",links:"links",motion:"motion",dyslexia:"dyslexia",cursor:"cursor",reading:"reading",reduced:"reduced"}[a];if(key){x.classList.toggle("on",!!s[key]);x.setAttribute("aria-pressed",String(!!s[key]));
 let st=x.querySelector(".a11y-state");if(st)st.textContent=s[key]?"Ενεργό":"Ανενεργό"}});localStorage.setItem(K,JSON.stringify(s))}function open(){p.hidden=false;o.setAttribute("aria-expanded","true");c.focus()}function close(){p.hidden=true;o.setAttribute("aria-expanded","false");o.focus()}o.onclick=open;c.onclick=close;document.addEventListener("keydown",e=>{if(e.ctrlKey&&e.key.toLowerCase()=="u"){e.preventDefault();p.hidden?open():close()}if(e.key=="Escape"&&!p.hidden)close()});document.querySelectorAll(".a11y-btn").forEach(x=>x.onclick=()=>{switch(x.dataset.a){case"contrast":s.contrast=(s.contrast+1)%4;break;case"up":s.text=Math.min(140,s.text+10);break;case"down":s.text=Math.max(85,s.text-10);break;case"space":s.space=(s.space+1)%4;break;case"line":s.line=(s.line+1)%4;break;case"align":s.align=(s.align+1)%3;break;default:s[x.dataset.a]=s[x.dataset.a]?0:1}apply()});document.addEventListener("mousemove",e=>{if(s.reading){let g=document.getElementById("a11yReadingGuide");g.style.top=Math.max(0,e.clientY-23)+"px"}});document.getElementById("a11yReset").onclick=()=>{s={...D};localStorage.removeItem(K);apply()};apply()})();
-</script></body>
+</script>
+<script>
+const speakBtn = document.getElementById("a11ySpeak");
+const speakState = document.getElementById("a11ySpeakState");
+let isSpeaking = false;
+
+speakBtn.addEventListener("click", function () {
+    if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        speakState.textContent = "Ανενεργή";
+        speakBtn.classList.remove("on");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const main = document.querySelector("main");
+    if (!main) return;
+
+    const text = main.innerText.trim();
+    if (!text) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "el-GR";
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+
+    const voices = speechSynthesis.getVoices();
+    const greekVoice = voices.find(v => v.lang.toLowerCase().startsWith("el"));
+    if (greekVoice) utterance.voice = greekVoice;
+
+    utterance.onend = function () {
+        isSpeaking = false;
+        speakState.textContent = "Ανενεργή";
+        speakBtn.classList.remove("on");
+    };
+
+    utterance.onerror = function () {
+        isSpeaking = false;
+        speakState.textContent = "Ανενεργή";
+        speakBtn.classList.remove("on");
+    };
+
+    isSpeaking = true;
+    speakState.textContent = "Ανάγνωση...";
+    speakBtn.classList.add("on");
+    speechSynthesis.speak(utterance);
+});
+</script>
+</body>
 </html>
